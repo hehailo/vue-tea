@@ -1,5 +1,4 @@
 <template>
-  <div class="tabbar" > 
     <van-tabbar route v-model="active" active-color="#ee0a24" inactive-color="#000">
       <!-- tab项 -->
       <van-tabbar-item
@@ -10,7 +9,6 @@
         >{{ tab.tabName }}</van-tabbar-item
       >
     </van-tabbar>
-  </div>
 </template>
 
 <script>

@@ -1,17 +1,22 @@
 <template>
-  <div>
-    <Header></Header>
-    <van-tabs v-model="active" swipeable duration="0.2">
-      <van-tab v-for="(tab, index) in tabs" :title="tab.label" :key="index">
-        内容 {{ tabs.label }}
-      </van-tab>
-    </van-tabs>
-    <section>
+  <div class="home">
+    <div class="header">
+      <Header></Header>
+      <van-tabs v-model="active" swipeable duration="0.2">
+        <van-tab v-for="(tab, index) in tabs" :title="tab.label" :key="index">
+        </van-tab>
+      </van-tabs>
+    </div>
+
+    <div class="main">
       <Swiper></Swiper>
       <Icons></Icons>
-    </section>
-    <Recommend></Recommend>
-    <Tabbar></Tabbar>
+      <Recommend></Recommend>
+    </div>
+
+    <div class="footer">
+      <Tabbar></Tabbar>
+    </div>
   </div>
 </template>
 
@@ -42,10 +47,26 @@ export default {
     Header,
     Swiper,
     Icons,
-    Recommend
+    Recommend,
   },
 };
 </script>
 
-<style>
+<style lang="less" scoped>
+.home {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .header {
+    height: 30vw;
+  }
+  .main {
+    flex: 1;
+    overflow: auto;
+  }
+  .footer {
+    height: 14vw;
+  }
+}
 </style>
