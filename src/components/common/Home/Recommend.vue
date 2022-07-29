@@ -44,7 +44,7 @@ export default {
           imgUrl: require("@/assets/img/goods/good4.jpg"),
         },
         {
-          id: 1,
+          id: 4,
           name: "龙井一号",
           desc: "鲜爽甘醇 口粮首选",
           price: 68,
