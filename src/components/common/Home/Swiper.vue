@@ -2,7 +2,7 @@
   <div class="swiperContainer">
     <!-- :autoplay="3000" -->
     <van-swipe class="swiper" :autoplay="3000">
-      <van-swipe-item v-for="image in swiperImgs" :key="image.id">
+      <van-swipe-item class="swiperImg" v-for="image in swiperImgs" :key="image.id">
         <van-image fit="cover" :src="image.imgUrl" />
       </van-swipe-item>
     </van-swipe>
@@ -15,10 +15,10 @@ export default {
   data() {
     return {
       swiperImgs: [
-        { id: "1", imgUrl: require("@/assets/img/swiper1.jpg") },
-        { id: "2", imgUrl: require("@/assets/img/swiper2.jpg") },
-        { id: "3", imgUrl: require("@/assets/img/swiper3.jpg") },
-        { id: "4", imgUrl: require("@/assets/img/swiper4.jpg") },
+        { id: "1", imgUrl: require("@/assets/img/swipers/swiper1.jpg") },
+        { id: "2", imgUrl: require("@/assets/img/swipers/swiper2.jpg") },
+        { id: "3", imgUrl: require("@/assets/img/swipers/swiper3.jpg") },
+        { id: "4", imgUrl: require("@/assets/img/swipers/swiper4.jpg") },
       ],
     };
   },
@@ -35,7 +35,11 @@ export default {
   height: 300px;
   .swiper {
     height: 300px;
+    .swiperImg{
+      width: 100%;
+    }
   }
+
 }
 </style>
 

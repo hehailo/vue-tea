@@ -3,19 +3,23 @@
     <div class="header">
       <Header></Header>
       <!-- Tab 标签页 -->
-      <van-tabs v-model="active" swipeable duration="0.2">
-        <van-tab v-for="(tab, index) in tabs" :title="tab.label" :key="index">
+      <van-tabs v-model="active" swipeable duration="0.2" @change="changeTab">
+        <van-tab
+          v-for="(tab, index) in tabData"
+          :title="tab.label"
+          :key="index"
+        >
         </van-tab>
       </van-tabs>
     </div>
 
     <div class="main" ref="wrapper">
       <div class="scoreZone">
-        <Swiper></Swiper>
-        <Icons></Icons>
-        <Recommend></Recommend>
-        <Like></Like>
-        <Ad></Ad>
+        <Swiper v-if="this.swipers"></Swiper>
+        <Ad v-if="this.advertisements"></Ad>
+        <Icons v-if="this.icons"></Icons>
+        <Recommend v-if="this.recommends"></Recommend>
+        <Like v-if="this.likes"></Like>
       </div>
     </div>
 
@@ -34,21 +38,20 @@ import Recommend from "@/components/common/Home/Recommend.vue";
 import Like from "@/components/common/Home/Like.vue";
 import Ad from "@/components/common/Home/Ad.vue";
 import BetterScroll from "better-scroll";
+import axios from "axios";
 
 export default {
   name: "Home",
   data() {
     return {
       active: 0,
-      tabs: [
-        { label: "推荐" },
-        { label: "大红袍" },
-        { label: "绿茶" },
-        { label: "铁观音" },
-        { label: "普洱" },
-        { label: "茶具" },
-        { label: "花茶" },
-      ],
+      tabData: [],
+      scroll: null,
+      advertisements: null,
+      icons: null,
+      likes: null,
+      recommends: null,
+      swipers: null,
     };
   },
   components: {
@@ -60,18 +63,58 @@ export default {
     Like,
     Ad,
   },
-  mounted() {
-    this.$nextTick(() => {
-      this.scroll = new BetterScroll(this.$refs.wrapper, {
-        movable: true,
-        zoom: true,
-        mouseWheel: true, //开启鼠标滚轮
-        disableMouse: false, // 启用鼠标拖动
-        disableTouch: false, // 启用手指触摸
-      });
-    });
+  created() {
+    this.getTab();
+    this.getData();
   },
-  methods: {},
+  mounted() {},
+  methods: {
+    async getData(index = 0) {
+      try {
+        let { data } = await axios({
+          url: "/api/home/" + index + "/data/1",
+        });
+        let { advertisements, icons, likes, recommends, swipers } =
+          Object.freeze(data.data.info);
+        this.advertisements = advertisements || null;
+        this.icons = icons || null;
+        this.likes = likes || null;
+        this.recommends = recommends || null;
+        this.swipers = swipers || null;
+        this.setBetterScroll();
+      } catch (error) {
+        console.log(error);
+        this.reset();
+      }
+    },
+    changeTab(name, title) {
+      this.getData(name);
+    },
+    async getTab() {
+      let { data } = await axios({
+        url: "/api/home/tabs",
+      });
+      this.tabData = Object.freeze(data?.data?.tabData);
+    },
+    setBetterScroll() {
+      this.$nextTick(() => {
+        this.scroll = new BetterScroll(this.$refs.wrapper, {
+          movable: true,
+          zoom: true,
+          mouseWheel: true, //开启鼠标滚轮
+          disableMouse: false, // 启用鼠标拖动
+          disableTouch: false, // 启用手指触摸
+        });
+      });
+    },
+    reset() {
+      this.advertisements = null;
+      this.icons = null;
+      this.likes = null;
+      this.recommends = null;
+      this.swipers = null;
+    },
+  },
 };
 </script>
 

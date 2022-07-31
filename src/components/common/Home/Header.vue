@@ -18,7 +18,7 @@ export default {
   name: "Header",
   mounted() {
     // 获取设备dpr
-    console.log(window.devicePixelRatio);
+    // console.log(window.devicePixelRatio);
   },
   methods: {
     toSearch($event) {
