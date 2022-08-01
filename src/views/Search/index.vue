@@ -61,9 +61,15 @@ export default {
   height: 100vh;
   overflow: hidden;
   flex-direction: column;
+  .header{
+    height: 15vw;
+  }
   .main {
     flex: 1;
     overflow: hidden;
+  }
+  .footer{
+    height: 13vw;
   }
 }
 </style>
