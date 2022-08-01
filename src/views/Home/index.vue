@@ -15,11 +15,11 @@
 
     <div class="main" ref="wrapper">
       <div class="scoreZone">
-        <Swiper v-if="this.swipers"></Swiper>
-        <Ad v-if="this.advertisements"></Ad>
-        <Icons v-if="this.icons"></Icons>
-        <Recommend v-if="this.recommends"></Recommend>
-        <Like v-if="this.likes"></Like>
+        <Swiper v-if="this.swipers" :swipers="swipers"></Swiper>
+        <Ad v-if="this.advertisements" :advertisements="advertisements"></Ad>
+        <Icons v-if="this.icons" :icons="icons"></Icons>
+        <Recommend v-if="this.recommends" :recommends="recommends"></Recommend>
+        <Like v-if="this.likes" :likes="likes"></Like>
       </div>
     </div>
 

@@ -9,7 +9,7 @@
       :price="item.price"
       :desc="item.desc"
       :title="item.name"
-      v-for="item in recommendList"
+      v-for="item in recommends.recommendList"
       :key="item.id"
     >
       <template #thumb>
@@ -26,31 +26,11 @@ export default {
   components: {
     TitleName,
   },
+  props:{
+    recommends:Object
+  },
   data() {
     return {
-      recommendList: [
-        {
-          id: 1,
-          name: "龙井一号",
-          desc: "鲜爽甘醇 口粮首选",
-          price: 68,
-          imgUrl: require("@/assets/img/goods/good3.jpg"),
-        },
-        {
-          id: 2,
-          name: "龙井一号",
-          desc: "鲜爽甘醇 口粮首选",
-          price: 68,
-          imgUrl: require("@/assets/img/goods/good4.jpg"),
-        },
-        {
-          id: 4,
-          name: "龙井一号",
-          desc: "鲜爽甘醇 口粮首选",
-          price: 68,
-          imgUrl: require("@/assets/img/goods/good5.jpg"),
-        },
-      ],
     };
   },
 };

@@ -22,13 +22,13 @@ export default {
   },
   methods: {
     toSearch($event) {
-      console.log($event);
+      this.$router.push("/search")
     },
   },
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .Header {
   display: flex;
   justify-content: center;

@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/home",
+    redirect: "/search",
   },
   // home cart list(分类) my
   {
@@ -29,6 +29,28 @@ const routes = [
     path: "/my",
     name: "My",
     component: () => import("../views/My"),
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: () => import("../views/Search"),
+    children: [
+      {
+        path: "/",
+        name: "seachhistoy",
+        component: () => import("../views/Search/SearchHistory.vue"),
+      },
+      {
+        path: "/searchlist",
+        name: "SearchList",
+        props($route) {
+          return {
+            searchWord: $route.query.searchWord,
+          };
+        },
+        component: () => import("../views/Search/SearchList.vue"),
+      },
+    ],
   },
 ];
 
