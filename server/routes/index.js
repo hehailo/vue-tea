@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var connection = require("../db/mysql");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -338,6 +339,31 @@ router.get("/api/home/3/data/1", function (req, res, next) {
       },
     },
   });
+});
+
+// 搜索商品数据
+router.get("/api/search/goods", function (req, res, next) {
+  let { keyword, type, seq } = req.query.keyword;
+  console.log(
+    "select * from goods_list where good_name like %" +
+      keyword +
+      "% order by type " +
+      seq +
+      " "
+  );
+  connection.query(
+    "select * from goods_list where good_name like %" +
+      keyword +
+      "% order by type " +
+      seq +
+      " ",
+    function (error, results) {
+      res.send({
+        code: 0,
+        data: results,
+      });
+    }
+  );
 });
 
 module.exports = router;
