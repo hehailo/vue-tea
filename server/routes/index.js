@@ -343,27 +343,112 @@ router.get("/api/home/3/data/1", function (req, res, next) {
 
 // 搜索商品数据
 router.get("/api/search/goods", function (req, res, next) {
-  let { keyword, type, seq } = req.query.keyword;
-  console.log(
-    "select * from goods_list where good_name like %" +
-      keyword +
-      "% order by type " +
-      seq +
-      " "
-  );
-  connection.query(
-    "select * from goods_list where good_name like %" +
-      keyword +
-      "% order by type " +
-      seq +
-      " ",
-    function (error, results) {
-      res.send({
-        code: 0,
-        data: results,
-      });
+  console.log(req.query);
+  let { keyword, type, seq } = req.query;
+
+  console.log(keyword, type, seq);
+  // console.log(
+  //   "select * from goods_list where good_name like %" +
+  //     keyword +
+  //     "% order by type " +
+  //     seq +
+  //     " "
+  // );
+  // connection.query(
+  //   "select * from goods_list where good_name like %" +
+  //     keyword +
+  //     "% order by type " +
+  //     seq +
+  //     " ",
+  //   function (error, results) {
+  //     res.send({
+  //       code: 0,
+  //       data: results,
+  //     });
+  //   }
+  // );
+
+  let goods = [
+    {
+      id: 1,
+      name: "灯火阑珊",
+      desc: "天长地久有时尽，此恨绵绵无绝期",
+      price: "21.00",
+      nums: "20",
+      imgUrl: "/img/goods/singer/01.png",
+    },
+    {
+      id: 2,
+      name: "人间有白头",
+      desc: "呼万唤始出来，犹抱琵琶半遮面",
+      price: "299.00",
+      nums: "2",
+      imgUrl: "/img/goods/singer/02.png",
+    },
+    {
+      id: 3,
+      name: "我见青山",
+      desc: "相恨不如潮有信，相思始觉海非深",
+      price: "456.88",
+      nums: "60",
+      imgUrl: "/img/goods/singer/03.png",
+    },
+    {
+      id: 4,
+      name: "见我应如是",
+      desc: "此情可待成追忆，只是当时已惘然。",
+      price: "462.99",
+      nums: "100",
+      imgUrl: "/img/goods/singer/04.png",
+    },
+    {
+      id: 5,
+      name: "相如赋",
+      desc: "庄生晓梦迷蝴蝶，望帝春心托杜鹃。—",
+      price: "123.99",
+      nums: "10000",
+      imgUrl: "/img/goods/singer/05.png",
+    },
+    {
+      id: 6,
+      name: "脉脉此情",
+      desc: "直道相思了无益，未妨惆怅是清狂",
+      price: "298.00",
+      nums: "20000",
+      imgUrl: "/img/goods/singer/06.png",
+    },
+    {
+      id: 7,
+      name: "天涯沦落人",
+      desc: "深知身在情长在，怅望江头江水声",
+      price: "992.00",
+      nums: "2828",
+      imgUrl: "/img/goods/singer/07.png",
+    },
+  ];
+
+  // 价格、销量升序
+  console.log(type,seq);
+  if (type) {
+    if (seq == "asc") {
+      goods.sort(
+        // 升序
+        (a, b) => parseFloat(a[type]) - parseFloat(b[type])
+      );
+    } else {
+      goods.sort(
+        // 降序
+        (a, b) => parseFloat(b[type]) - parseFloat(a[type])
+      );
     }
-  );
+  }
+
+  res.send({
+    code: 0,
+    data: {
+      goods,
+    },
+  });
 });
 
 module.exports = router;

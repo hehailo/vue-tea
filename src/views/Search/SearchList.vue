@@ -42,10 +42,15 @@
 </template>
 
 <script>
+// import axios from "axios";
+import {searchGoods} from '@/api/goods.js'
 export default {
   name: "SearchList",
   props: {
     searchWord: String,
+  },
+  created(){
+    this.getData();
   },
   data() {
     return {
@@ -123,6 +128,19 @@ export default {
   methods: {
     changeSelection($event) {
       console.log("$event", $event);
+    },
+    async getData() {
+      // let res = await axios.get("/api/search/goods", {
+        let params =  {
+           keyword:"1234",
+           type:"price",
+           seq:"asc"
+        }
+      // });
+
+
+      let res = await searchGoods(params);
+      console.log("res",res);
     },
   },
 };
