@@ -24,31 +24,16 @@ export default {
     };
   },
   methods: {
-    onSearch() {
-      if (!this.searchVal) {
-        return;
-      }
-      // 存入缓存里面
-      let searchHitories = [];
-      if (!localStorage.getItem("searchHistories")) {
-        localStorage.setItem("searchHistories", "[]");
-      } else {
-        searchHitories = JSON.parse(localStorage.getItem("searchHistories"));
-      }
-      searchHitories.unshift(this.searchVal);
-
-      let newArr = [...new Set(searchHitories)];
-      localStorage.setItem("searchHistories", JSON.stringify(newArr));
-
-      // this.$router.push({
-      //   name: "SearchList",
-      //   query: {
-      //     searchWord: this.searchVal,
-      //   },
-      // });
-    },
-    onCancel() {
-      this.$router.back();
+    setBetterScroll() {
+      this.$nextTick(() => {
+        this.scroll = new BetterScroll(this.$refs.wrapper, {
+          movable: true,
+          zoom: true,
+          mouseWheel: true, //开启鼠标滚轮
+          disableMouse: false, // 启用鼠标拖动
+          disableTouch: false, // 启用手指触摸
+        });
+      });
     },
   },
 };
@@ -56,19 +41,19 @@ export default {
 
 <style lang="less" scoped>
 .Search {
-  display: flex;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   flex-direction: column;
-  .header{
+  display: flex;
+  .header {
     height: 15vw;
   }
   .main {
     flex: 1;
     overflow: hidden;
   }
-  .footer{
+  .footer {
     height: 13vw;
   }
 }

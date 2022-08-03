@@ -23,3 +23,22 @@ toast 参考
 https://www.cnblogs.com/aahan/p/14139149.html
 
 https://blog.csdn.net/weixin_44278376/article/details/113860367
+
+
+
+问题修复
+vue-router.esm.js:2065 Uncaught (in promise) NavigationDuplicated: Avoided redundant navigation to current location: "/searchlist?searchWord=%E5%A5%BD%E5%83%8F".
+    at createRouterError (http://localhost:8081/js/chunk-vendors.js:37436:15)
+    at createNavigationDuplicatedError (http://localhost:8081/js/chunk-vendors.js:37406:15)
+    at HashHistory.confirmTransition (http://localhost:8081/js/chunk-vendors.js:37704:18)
+    at HashHistory.transitionTo (http://localhost:8081/js/chunk-vendors.js:37631:8)
+    at HashHistory.push (http://localhost:8081/js/chunk-vendors.js:38086:10)
+    at http://localhost:8081/js/chunk-vendors.js:38405:22
+    at new Promise (<anonymous>)
+    at VueRouter.push (http://localhost:8081/js/chunk-vendors.js:38404:12)
+    at VueComponent.onSearch (http://localhost:8081/js/3.js:41:20)
+    at VueComponent.onCancel (http://localhost:8081/js/3.js:51:12)
+
+
+
+    

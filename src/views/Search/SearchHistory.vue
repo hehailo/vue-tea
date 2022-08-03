@@ -22,6 +22,7 @@
             type="warning"
             v-for="(his, index) in searchHistories"
             :key="index"
+            @click="goToResult(his)"
             >{{ his }}</van-tag
           >
         </template>
@@ -41,7 +42,16 @@ export default {
   created() {
     this.searchHistories =
       JSON.parse(localStorage.getItem("searchHistories")) || [];
-      console.log(this.searchHistories);
+  },
+  methods: {
+    goToResult(searchWord) {
+      this.$router.push({
+        name: "SearchList",
+        query: {
+          searchWord,
+        },
+      });
+    },
   },
 };
 </script>

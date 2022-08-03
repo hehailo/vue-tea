@@ -51,6 +51,11 @@ export default {
       this.$router.back();
     },
   },
+  watch: {
+    $route(newVal) {
+      this.searchVal = newVal.query.searchWord;
+    },
+  },
 };
 </script>
 

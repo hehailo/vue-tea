@@ -31,12 +31,12 @@ instance.interceptors.response.use(
     if (loadingToast.length > 0) {
       loadingToast.pop().clear();
     }
-    Toast.success("成功文案");
+    Toast.success("请求成功");
     console.log("response",response.data);
     return response.data;
   },
   (error) => {
-    Toast.fail("失败文案");
+    Toast.fail("请求失败");
     if (loadingToast.length > 0) {
       loadingToast.pop().clear();
     }
