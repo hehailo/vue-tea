@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import TitleName from "@/components/common/Home/TitleName.vue";
+import TitleName from "@/components/Home/TitleName.vue";
 export default {
   name: "Like",
   components: {

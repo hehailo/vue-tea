@@ -19,7 +19,7 @@ export default {
       active: 0,
       tabList: [
         { tabName: "首页", icon: "home-o", link: "/home" },
-        { tabName: "分类", icon: "apps-o", link: "/list" },
+        { tabName: "分类", icon: "apps-o", link: "/category" },
         { tabName: "购物车", icon: "cart-o", link: "/cart" },
         { tabName: "我的", icon: "contact", link: "/my" },
       ],

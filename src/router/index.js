@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/search",
+    redirect: "/home",
   },
   // home cart list(分类) my
   {
@@ -23,9 +23,9 @@ const routes = [
     component: () => import("../views/Home"),
   },
   {
-    path: "/list",
-    name: "List",
-    component: () => import("../views/List"),
+    path: "/category",
+    name: "Category",
+    component: () => import("../views/Category"),
   },
   {
     path: "/cart",

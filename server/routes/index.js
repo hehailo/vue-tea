@@ -442,7 +442,7 @@ router.get("/api/search/goods", function (req, res, next) {
         // 升序
         (a, b) => parseFloat(a[type]) - parseFloat(b[type])
       );
-    } else if(seq == "desc") {
+    } else if (seq == "desc") {
       goods.sort(
         // 降序
         (a, b) => parseFloat(b[type]) - parseFloat(a[type])
@@ -454,6 +454,61 @@ router.get("/api/search/goods", function (req, res, next) {
     code: 0,
     data: {
       goods,
+    },
+  });
+});
+
+//分类的数据
+router.get("/api/cate/list", function (req, res, next) {
+  console.log("获取分类的数据", req.query);
+  let level =
+    "陆游、王安石、苏轼、杨万里、范仲淹、范成大、辛弃疾、刘克庄".split("、");
+  let level3 = [
+    "高山、奔流、雄关、沧海，大江、长风等",
+    "沙漠、古道、落日、寒风、冷雨、梧桐、杜鹃鸟、芭蕉",
+    "冰雪、松、菊、梅、竹",
+    "苏幕遮、永遇乐、虞美人、清平乐、采桑子、卜算子",
+    "忆江南、长相思、渔歌子",
+    "菩萨蛮、醉花阴、浣溪沙、临江仙、生查子、定风波、渔家傲、水调歌头",
+    "金、石、土、革、丝、木、匏(páo)、竹",
+    "二胡、编钟、箫、笛、瑟、琴、埙、笙",
+  ];
+
+  let i = 1;
+  let catelist = level.map((item, index1) => {
+    //第三级数据
+    let list = [];
+    level3[index1].split("、").forEach((name, index2) => {
+      //函数体
+      let temp = {
+        level3Id: index2,
+        parentid: index1,
+        name: name,
+        imgUrl: "/img/avator/" + i + ".png",
+      };
+      i++;
+      if (i > 43) {
+        i = 1;
+      }
+      list.push(temp);
+    });
+
+    return {
+      // 第二级数据
+      level1Id: index1,
+      name: item,
+      list: {
+        level2Id: index1,
+        name: item,
+        list: list,
+      },
+    };
+  });
+
+  res.send({
+    code: 0,
+    data: {
+      catelist,
     },
   });
 });

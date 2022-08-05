@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import Header from "@/components/common/Search/Header.vue";
 import Tabbar from "@/components/common/Tabbar.vue";
+import Header from "@/components/Search/Header.vue";
 export default {
   name: "Search",
   components: { Header, Tabbar },
@@ -24,17 +24,6 @@ export default {
     };
   },
   methods: {
-    setBetterScroll() {
-      this.$nextTick(() => {
-        this.scroll = new BetterScroll(this.$refs.wrapper, {
-          movable: true,
-          zoom: true,
-          mouseWheel: true, //开启鼠标滚轮
-          disableMouse: false, // 启用鼠标拖动
-          disableTouch: false, // 启用手指触摸
-        });
-      });
-    },
   },
 };
 </script>

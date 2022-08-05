@@ -41,4 +41,15 @@ vue-router.esm.js:2065 Uncaught (in promise) NavigationDuplicated: Avoided redun
 
 
 
-    
+注意
+    https://blog.csdn.net/qq_39650208/article/details/105456143
+
+    需要滚动的内容要包含在一个大的div下，表示是这个div在滚动（个人理解），像这样的格式
+    <div ref="content">
+    <div>
+      <p>滚动的内容1</p>
+      <p>滚动的内容2</p>
+      <p>滚动的内容3</p>
+      <p>滚动的内容4</p>
+    </div>
+  </div>

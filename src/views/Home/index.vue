@@ -3,7 +3,13 @@
     <div class="header">
       <Header></Header>
       <!-- Tab 标签页 -->
-      <van-tabs v-model="active" swipeable duration="0.2" @change="changeTab">
+      <van-tabs
+        class="tabs"
+        v-model="active"
+        swipeable
+        duration="0.2"
+        @change="changeTab"
+      >
         <van-tab
           v-for="(tab, index) in tabData"
           :title="tab.label"
@@ -30,13 +36,13 @@
 </template>
 
 <script>
-import Header from "@/components/common/Home/Header.vue";
 import Tabbar from "@/components/common/Tabbar.vue";
-import Swiper from "@/components/common/Home/Swiper.vue";
-import Icons from "@/components/common/Home/Icons.vue";
-import Recommend from "@/components/common/Home/Recommend.vue";
-import Like from "@/components/common/Home/Like.vue";
-import Ad from "@/components/common/Home/Ad.vue";
+import Header from "@/components/Home/Header.vue";
+import Swiper from "@/components/Home/Swiper.vue";
+import Icons from "@/components/Home/Icons.vue";
+import Recommend from "@/components/Home/Recommend.vue";
+import Like from "@/components/Home/Like.vue";
+import Ad from "@/components/Home/Ad.vue";
 import BetterScroll from "better-scroll";
 import axios from "axios";
 
@@ -65,9 +71,7 @@ export default {
   },
   created() {
     this.getTab();
-    this.getData();
   },
-  mounted() {},
   methods: {
     async getData(index = 0) {
       try {
@@ -95,17 +99,22 @@ export default {
         url: "/api/home/tabs",
       });
       this.tabData = Object.freeze(data?.data?.tabData);
+      this.getData();
     },
     setBetterScroll() {
-      this.$nextTick(() => {
-        this.scroll = new BetterScroll(this.$refs.wrapper, {
-          movable: true,
-          zoom: true,
-          mouseWheel: true, //开启鼠标滚轮
-          disableMouse: false, // 启用鼠标拖动
-          disableTouch: false, // 启用手指触摸
+      if (this.scroll) {
+        this.scroll.refresh();
+      } else {
+        this.$nextTick(() => {
+          this.scroll = new BetterScroll(this.$refs.wrapper, {
+            movable: true,
+            zoom: true,
+            mouseWheel: true, //开启鼠标滚轮
+            disableMouse: false, // 启用鼠标拖动
+            disableTouch: false, // 启用手指触摸
+          });
         });
-      });
+      }
     },
     reset() {
       this.advertisements = null;
@@ -127,6 +136,9 @@ export default {
   .header {
     // height: 30vw;
     margin-bottom: 2px;
+    .tabs {
+      height: 11.5vw;
+    }
   }
   .main {
     flex: 1;

@@ -32,7 +32,7 @@ instance.interceptors.response.use(
       loadingToast.pop().clear();
     }
     Toast.success("请求成功");
-    console.log("response",response.data);
+    console.log("api response",response.data);
     return response.data;
   },
   (error) => {

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let level =
+        "陆游、王安石、苏轼、杨万里、范仲淹、范成大、辛弃疾、刘克庄".split(
+          "、"
+        );
+      let level3 = [
+        "高山、奔流、雄关、沧海，大江、长风等",
+        "沙漠、古道、落日、寒风、冷雨、梧桐、杜鹃鸟、芭蕉",
+        "冰雪、松、菊、梅、竹",
+        "苏幕遮、永遇乐、虞美人、清平乐、采桑子、卜算子",
+        "忆江南、长相思、渔歌子",
+        "菩萨蛮、醉花阴、浣溪沙、临江仙、生查子、定风波、渔家傲、水调歌头",
+        "金、石、土、革、丝、木、匏(páo)、竹",
+        "二胡、编钟、箫、笛、瑟、琴、埙、笙",
+      ];
+
+      let catelist = level.map((item, index1) => {
+        //第二级数据
+
+        //第三级数据
+        let list = [];
+        level3[index1].split("、").forEach((name, index2) => {
+          //函数体
+          let temp = {
+            level3Id: index2,
+            parentid: index1,
+            name: name,
+            imgUrl: "/img/goods/haibao/07.png",
+          };
+          list.push(temp);
+        });
+
+        return {
+          level1Id: index1,
+          name: item,
+          list: {
+            level2Id: index1,
+            name: item,
+            list: list,
+          },
+        };
+      });
+
+      console.log(catelist);
+    </script>
+  </body>
+</html>
