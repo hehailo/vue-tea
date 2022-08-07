@@ -2,18 +2,28 @@
   <div class="Category">
     <div class="header"><NavBar title="分类"></NavBar></div>
     <div class="main">
+      <!-- 左侧菜单 -->
       <div class="left">
-        <van-sidebar v-model="activeKey" @change="cahngeMenu">
+        <van-sidebar v-model="activeKey">
           <van-sidebar-item
             :title="item.name"
             v-for="item in leftArr"
             :key="item.id"
+            @click="changeMenu"
           />
         </van-sidebar>
       </div>
-
+      <!-- 右侧内容 -->
       <div class="right" ref="right">
         <div>
+          <div class="headImg">
+            <van-image
+              width="100%"
+              fit="cover"
+              height="120"
+              src="/img/bg/bg08.png"
+            />
+          </div>
           <div class="card" v-for="item in rightArr" :key="item.level2Id">
             <van-cell :value="item.name" />
             <van-grid :column-num="3" clickable :border="false">
@@ -33,9 +43,12 @@
               </van-grid-item>
             </van-grid>
           </div>
+
+          <div class="empty"></div>
         </div>
       </div>
     </div>
+
     <div class="footer">
       <Tabbar></Tabbar>
     </div>
@@ -56,14 +69,32 @@ export default {
       leftArr: [],
       rightArr: [],
       rightScroll: null,
+      allHeight: [],
+      scrollY: 0, //滚动的距离
     };
   },
   created() {
     this.getData();
   },
+  computed: {
+    currentIndex() {
+      let res = this.allHeight.findIndex((item, index) => {
+        // findIndex()方法返回数组中满足提供的测试函数的第一个元素的索引。
+        // 若没有找到对应元素则返回-1。
+        return this.scrollY >= item && this.scrollY < this.allHeight[index + 1];
+      });
+      return res;
+    },
+  },
+  watch: {
+    currentIndex(nwVal) {
+      this.activeKey = nwVal;
+    },
+  },
   methods: {
-    cahngeMenu() {
-      console.log(this.activeKey);
+    changeMenu(index) {
+      console.log("changeMenu", index);
+      this.rightScroll.scrollTo(0, -this.allHeight[index], 300);
     },
     async getData() {
       let result = await searcCateLlist();
@@ -96,6 +127,20 @@ export default {
             probeType: 3,
           });
         }
+
+        let cards = this.$refs.right.getElementsByClassName("card");
+        let height = 130;
+        this.allHeight.push(0);
+        Array.from(cards).forEach((card) => {
+          height += card.clientHeight;
+          this.allHeight.push(height);
+        });
+        this.rightScroll.off("scroll");
+        this.rightScroll.on("scroll", (pos) => {
+          // {x: 0, y: -108.404}
+          // 设置滚动距离
+          this.scrollY = Math.abs(pos.y);
+        });
       });
     },
   },
@@ -110,7 +155,7 @@ export default {
   flex-direction: column;
   display: flex;
   .header {
-    height: 15vw;
+    height: 13vw;
   }
   .main {
     flex: 1;
@@ -121,6 +166,9 @@ export default {
       width: 100%;
       flex: 1;
       overflow: hidden;
+      .headImg {
+        padding: 10px 10px 0 10px;
+      }
       .card {
         .van-cell {
           // padding: 10px;
@@ -129,6 +177,9 @@ export default {
             text-align: center;
           }
         }
+      }
+      .empty{
+        height: 1000px;
       }
     }
   }
