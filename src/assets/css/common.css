@@ -1,7 +1,11 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-ul list{
-    list-style: none;
+ul list {
+  list-style: none;
+}
+
+.footer {
+  height: 14vw;
 }

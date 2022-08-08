@@ -38,6 +38,11 @@ const routes = [
     component: () => import("../views/My"),
   },
   {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/Login"),
+  },
+  {
     path: "/search",
     name: "Search",
     component: () => import("../views/Search"),
