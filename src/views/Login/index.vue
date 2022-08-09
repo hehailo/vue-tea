@@ -79,16 +79,16 @@
 
 <script>
 import { login, sendSms } from "@/api/user";
+import { mapMutations } from "vuex";
 export default {
   name: "Login",
   data() {
     return {
       user: {
-        mobile: "", // 手机号
-        code: "", // 验证码
-        password: "123456",
-        disabledCode: true,
+        mobile: "1998", // 手机号
+        code: "123456", // 验证码
       },
+      disabledCode: true,
       rules: {
         mobile: [
           { required: true, message: "手机号不能为空！" },
@@ -106,30 +106,56 @@ export default {
     };
   },
   methods: {
+    ...mapMutations("user", ["saveUserInfo"]),
     finish() {
       // 倒计时结束时触发
       this.showSendmessage = true;
     },
     // 点击发送短信验证码
-    onSendSms() {
+    async onSendSms() {
+      //1 验证手机号
+      try {
+        await this.$refs.loginForm.validate("mobile"); // 返回的是promise
+      } catch (error) {
+        return;
+      }
+      //2.开启倒计时
       this.showSendmessage = false;
+      // 可以输入验证码
+      this.disabledCode = false;
+      //3 发送验证码
+      try {
+        await sendSms({
+          mobile: this.mobile,
+        });
+        this.$toast("发送成功！");
+      } catch (error) {
+        // 关闭倒计时
+        this.showSendmessage = false;
+        this.$toast("发送失败，请稍后重试");
+      }
     },
     // 校验
     validate(val) {
-      return /^1[3|5|7|8]\d{9}$/.test(val);
+      return /^1[3|5|7|8|9]\d{2}$/.test(val);
     },
     // 点击表单提交
     async onSubmit() {
-      let res = await login();
-      console.log("res");
-    },
-    async onSendSms() {
-      let params = {
-        userMobile: this.user.mobile,
-      };
-      let { data } = await sendSms(params);
-      // 接口返回的验证码是加密过的
-      this.password = data.smscode;
+      let user = this.user;
+      try {
+        let res = await login(user);
+        if (res.code == "200") {
+          // 成功
+          this.$toast("登录成功！");
+          // 存放用户信息
+          this.saveUserInfo(res.data.data);
+          this.$router.push("/my");
+        } else {
+          this.$toast("登录失败，请稍后重试。原因：\n" + res.message);
+        }
+      } catch (error) {
+        this.$toast("登录失败，请稍后重试。原因：\n" + error.message);
+      }
     },
   },
 };
