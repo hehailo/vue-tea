@@ -6,6 +6,7 @@ import store from './store'
 
 // 公共样式
 import "./assets/css/common.css"
+import "./assets/css/incofont.css"
 
 //V按天
 import Vant from 'vant';

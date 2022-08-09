@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var connection = require("../db/mysql");
+var userApi = require("./userApi");
+userApi(router)
 
 /* GET home page. */
 router.get("/", function (req, res, next) {

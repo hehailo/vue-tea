@@ -14,7 +14,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/home",
+    redirect: "/login",
   },
   // home cart list(分类) my
   {
