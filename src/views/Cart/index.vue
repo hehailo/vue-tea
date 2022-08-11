@@ -27,7 +27,7 @@
       <Address></Address>
       <CartItem></CartItem>
     </div>
-    <div>
+    <div class="footer">
       <Tabbar></Tabbar>
     </div>
   </div>
@@ -58,18 +58,37 @@ export default {
 
 <style lang="less" scoped>
 .Cart {
+  display: flex;
+  flex-direction: column;
   background-color: #f2f2f2;
+  height: 100vh;
+  width: 100vw;
   .header {
-    /deep/ .van-nav-bar__arrow {
-      color: black;
+    height: 13vw;
+    // background-color: #2dbc51;
+    /deep/ .van-nav-bar__arrow,
+    /deep/ .van-nav-bar__title {
+      // color: black;
+      color: white;
     }
     /deep/ .van-popover__wrapper {
-      color: black;
+      // color: black;
       font-weight: bold;
+      color: white;
+    }
+    .van-nav-bar {
+      background-color: #2dbc51;
+      color: white;
     }
   }
+
   .main {
-    padding: 10px 20px;
+    padding: 15px 15px;
+    flex: 1;
+    overflow: hidden;
+  }
+  .footer {
+    height: 13vw;
   }
 }
 </style>
