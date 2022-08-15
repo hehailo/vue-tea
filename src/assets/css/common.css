@@ -10,3 +10,8 @@ ul list {
 .footer {
   height: 14vw;
 }
+.ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
