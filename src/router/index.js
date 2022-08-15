@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, { TrackOpTypes } from "vue";
 import VueRouter from "vue-router";
 
 Vue.use(VueRouter);
@@ -14,8 +14,9 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/login",
+    redirect: "/home",
   },
+
   // home cart list(分类) my
   {
     path: "/home",
@@ -31,6 +32,12 @@ const routes = [
     path: "/cart",
     name: "Cart",
     component: () => import("../views/Cart"),
+  },
+  {
+    path: "/detail/:productId",
+    name: "GoodDeatil",
+    props:true,
+    component: () => import("../views/GoodDeatil"),
   },
   {
     path: "/my",

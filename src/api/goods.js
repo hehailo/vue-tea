@@ -8,3 +8,13 @@ export const searchGoods = (params) => {
     params,
   });
 };
+
+
+export const getGoodDeatil = (params) => {
+  return request({
+    method: "GET",
+    url: "/api/goods/gooddeatil",
+    // params 选项用来配置 Query 参数
+    params,
+  });
+};

@@ -11,6 +11,7 @@
       :title="item.name"
       v-for="item in recommends.recommendList"
       :key="item.id"
+      @click="gotoDetail(item)"
     >
       <template #thumb>
         <van-image fit="cover" :src="item.imgUrl" />
@@ -33,6 +34,17 @@ export default {
     return {
     };
   },
+  methods:{
+    gotoDetail(item){
+      console.log("那就好");
+      this.$router.push({
+        name:"GoodDeatil",
+        params:{
+          productId:item.productId
+        }
+      })
+    }
+  }
 };
 </script>
 

@@ -85,7 +85,7 @@ export default {
   .main {
     padding: 15px 15px;
     flex: 1;
-    overflow: hidden;
+    overflow: scroll;
   }
   .footer {
     height: 13vw;

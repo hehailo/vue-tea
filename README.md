@@ -53,3 +53,12 @@ vue-router.esm.js:2065 Uncaught (in promise) NavigationDuplicated: Avoided redun
       <p>滚动的内容4</p>
     </div>
   </div>
+
+
+## better-scroll导致点击事件失效
+注意：
+https://blog.csdn.net/qq_41150189/article/details/94672119
+better-scroll导致点击事件失效的原因和解决方法
+
+            click:true,
+            tap:true

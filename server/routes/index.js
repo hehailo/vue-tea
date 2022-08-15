@@ -90,6 +90,7 @@ router.get("/api/home/0/data/1", function (req, res, next) {
               desc: "鲜爽甘醇 口粮首选",
               price: 68,
               imgUrl: "/img/goods/good3.jpg",
+              productId:"1001"
             },
             {
               id: 2,
@@ -97,6 +98,7 @@ router.get("/api/home/0/data/1", function (req, res, next) {
               desc: "鲜爽甘醇 口粮首选",
               price: 68,
               imgUrl: "/img/goods/good4.jpg",
+              productId:"1002"
             },
             {
               id: 4,
@@ -104,6 +106,7 @@ router.get("/api/home/0/data/1", function (req, res, next) {
               desc: "鲜爽甘醇 口粮首选",
               price: 68,
               imgUrl: "/img/goods/good5.jpg",
+              productId:"1003"
             },
           ],
         },
@@ -114,24 +117,28 @@ router.get("/api/home/0/data/1", function (req, res, next) {
               name: "秒速5厘米",
               imgUrl: "/img/like/like2.jpg",
               price: "21",
+              productId:"1004"
             },
             {
               id: 2,
               name: "言叶之庭",
               imgUrl: "/img/like/like3.jpg",
               price: "21",
+              productId:"1005"
             },
             {
               id: 3,
               name: "天气之子",
               imgUrl: "/img/like/like4.jpg",
               price: "24",
+              productId:"1006"
             },
             {
               id: 4,
               name: "你的名字",
               imgUrl: "/img/like/like1.jpg",
               price: "25",
+              productId:"1007"
             },
           ],
         },
@@ -155,24 +162,28 @@ router.get("/api/home/1/data/1", function (req, res, next) {
               name: "秒速5厘米",
               imgUrl: "/img/like/like2.jpg",
               price: "21",
+              productId:"1008"
             },
             {
               id: 2,
               name: "言叶之庭",
               imgUrl: "/img/like/like3.jpg",
               price: "21",
+              productId:"1009"
             },
             {
               id: 3,
               name: "天气之子",
               imgUrl: "/img/like/like4.jpg",
               price: "24",
+              productId:"1010"
             },
             {
               id: 4,
               name: "你的名字",
               imgUrl: "/img/like/like1.jpg",
               price: "25",
+              productId:"1011"
             },
           ],
         },
@@ -182,6 +193,7 @@ router.get("/api/home/1/data/1", function (req, res, next) {
               id: 1,
               name: "ad1",
               imgUrl: "/img/ads/01.jpg",
+              productId:"1014"
             },
           ],
         },
@@ -380,6 +392,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "21.00",
       nums: "20",
       imgUrl: "/img/goods/" + url + "/01.png",
+      productId:"1021"
     },
     {
       id: 2,
@@ -388,6 +401,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "299.00",
       nums: "2",
       imgUrl: "/img/goods/" + url + "/02.png",
+      productId:"1022"
     },
     {
       id: 3,
@@ -396,6 +410,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "456.88",
       nums: "60",
       imgUrl: "/img/goods/" + url + "/03.png",
+      productId:"1023"
     },
     {
       id: 4,
@@ -404,6 +419,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "462.99",
       nums: "100",
       imgUrl: "/img/goods/" + url + "/04.png",
+      productId:"1024"
     },
     {
       id: 5,
@@ -412,6 +428,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "123.99",
       nums: "10000",
       imgUrl: "/img/goods/" + url + "/05.png",
+      productId:"1035"
     },
     {
       id: 6,
@@ -420,6 +437,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "298.00",
       nums: "20000",
       imgUrl: "/img/goods/" + url + "/06.png",
+      productId:"1026"
     },
     {
       id: 7,
@@ -428,6 +446,7 @@ router.get("/api/search/goods", function (req, res, next) {
       price: "992.00",
       nums: "2828",
       imgUrl: "/img/goods/" + url + "/07.png",
+      productId:"1027"
     },
   ];
 
